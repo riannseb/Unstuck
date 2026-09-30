@@ -1,0 +1,8 @@
+.env
+venv/
+__pycache__/
+.DS_Store
+app1.py
+app2.py
+app3.py
+app4.py
