@@ -89,9 +89,25 @@ for key, value in DEFAULT_STATE.items():
 
 load_dotenv()
 
-client = OpenAI(
-    api_key=os.getenv("OPENAI_API_KEY")
-)
+api_key = os.getenv("OPENAI_API_KEY")
+
+if not api_key:
+
+    try:
+
+        api_key = st.secrets["OPENAI_API_KEY"]
+
+    except Exception:
+
+        api_key = None
+
+if not api_key:
+
+    st.error("OpenAI API key is not configured.")
+
+    st.stop()
+
+client = OpenAI(api_key=api_key)
 
 
 # ============================================================
